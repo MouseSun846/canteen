@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: mousesun
+    password: mousesun
+    url: jdbc:mysql://47.98.216.192/canteen?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
+server:
+  servlet:
+    context-path: /sell
+#logging:
+#  pattern:
+#    console: "%d-%msg%n"
+#  file:
+#    path: sell/log
