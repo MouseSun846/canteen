@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: mousesun
     password: mousesun
-    url: jdbc:mysql://47.98.216.192/canteen?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://47.98.216.192/canteen?serverTimezone=UTC
   jpa:
     show-sql: true
 server:
