@@ -12,6 +12,6 @@ import java.util.List;
 public interface CatetoryServices {
     ProductCategory getOne(Integer categoryId);
     List<ProductCategory> findAll();
-    List<ProductCategory> findByCategoryTypeIn(List<Integer> caategoryTypeList);
+    List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList);
     ProductCategory save(ProductCategory productCategory);
 }
