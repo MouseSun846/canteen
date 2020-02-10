@@ -1,6 +1,6 @@
 package com.hdu.canteen.services.Impl;
 
-import com.hdu.canteen.SellException;
+import com.hdu.canteen.Exception.SellException;
 import com.hdu.canteen.dataobject.ProductInfo;
 import com.hdu.canteen.dataobject.dto.CartDTO;
 import com.hdu.canteen.enums.ProductStatusEnum;
@@ -8,14 +8,12 @@ import com.hdu.canteen.enums.ResultEnum;
 import com.hdu.canteen.repository.ProductInfoRepository;
 import com.hdu.canteen.services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author MouseSun
@@ -49,7 +47,17 @@ public class ProductServicesImpl implements ProductServices {
     }
 
     @Override
+    @Transactional
     public void increaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDTO : cartDTOList){
+            ProductInfo productInfo = repository.getOne(cartDTO.getProductId());
+            if (productInfo == null){
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            productInfo.setProductStock(result);
+            repository.save(productInfo);
+        }
 
     }
 

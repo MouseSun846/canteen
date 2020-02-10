@@ -1,4 +1,4 @@
-package com.hdu.canteen;
+package com.hdu.canteen.Exception;
 
 import com.hdu.canteen.enums.ResultEnum;
 
@@ -13,5 +13,10 @@ public class SellException extends RuntimeException {
     public SellException(ResultEnum resultEnum) {
         super(resultEnum.getMessage());
         this.code = resultEnum.getCode();
+    }
+
+    public SellException(Integer code, String defaultMessage) {
+        super(defaultMessage);
+        this.code = code;
     }
 }

@@ -1,5 +1,8 @@
 package com.hdu.canteen.dataobject.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.hdu.canteen.Utils.serializer.DateToLongSerializer;
 import com.hdu.canteen.dataobject.OrderDetail;
 import com.hdu.canteen.enums.OrderStatusEnum;
 import com.hdu.canteen.enums.PayStatusEnum;
@@ -15,6 +18,7 @@ import java.util.List;
  * @date 2020/2/9 20:08
  */
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
     /*订单id*/
     private String orderId;
@@ -41,9 +45,11 @@ public class OrderDTO {
     private Integer payStatus;
 
     /*创建时间*/
+    @JsonSerialize(using = DateToLongSerializer.class)
     private Date createTime;
 
     /*更新时间*/
+    @JsonSerialize(using = DateToLongSerializer.class)
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;
